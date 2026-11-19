@@ -1,0 +1,118 @@
+{
+ "_version": "1.3.2",
+ "_comment": "Canonical field -> header aliases (case/spacing/punctuation-insensitive). Add new aliases here, or map unknown columns in the app's Import screen (saved to the DB).",
+ "canonical": {
+  "bpc_title": [
+   "BPC Title",
+   "Title",
+   "Control Title"
+  ],
+  "device_serial": [
+   "Device Serial",
+   "Serial",
+   "Serial Number"
+  ],
+  "bpc_id": [
+   "Bpc Id",
+   "BPC ID",
+   "Control Id"
+  ],
+  "control_groups": [
+   "Control Groups",
+   "Control Group"
+  ],
+  "device_type": [
+   "Device Type",
+   "Product"
+  ],
+  "object_type": [
+   "Object Type"
+  ],
+  "severity": [
+   "Severity"
+  ],
+  "location": [
+   "Location"
+  ],
+  "remediation_location": [
+   "Remediation Location"
+  ],
+  "object_id": [
+   "Object Id",
+   "Object ID"
+  ],
+  "status": [
+   "Bpc Status",
+   "Status"
+  ],
+  "user_excluded": [
+   "User Excluded",
+   "Excluded"
+  ]
+ },
+ "tiers": [
+  {
+   "name": "exact",
+   "fields": [
+    "serial_key",
+    "bpc_id",
+    "object_id",
+    "location"
+   ],
+   "auto": true,
+   "tie_breaker": "rem_tail"
+  },
+  {
+   "name": "serial_changed",
+   "fields": [
+    "bpc_id",
+    "object_id",
+    "location",
+    "rem_tail"
+   ],
+   "auto": false
+  },
+  {
+   "name": "object_changed",
+   "fields": [
+    "serial_key",
+    "bpc_id",
+    "location",
+    "rem_tail"
+   ],
+   "auto": false
+  }
+ ],
+ "multi_value_fields": [
+  "control_groups"
+ ],
+ "known_schemas": [
+  {
+   "name": "v1",
+   "requires_any": [
+    "Product"
+   ],
+   "first_seen": "2026-08-13",
+   "strict": false
+  },
+  {
+   "name": "v2",
+   "requires_any": [
+    "Device Type",
+    "Control Groups"
+   ],
+   "first_seen": "2026-10-01",
+   "strict": true
+  }
+ ],
+ "alias_suggestions": {
+  "min_old_pct": 0.7,
+  "min_new_pct": 0.5,
+  "small_lines": 200,
+  "small_min_pct": 0.95
+ },
+ "rename_suggestions": {
+  "min_lines": 2,
+  "min_devices": 2
+ }
+}
